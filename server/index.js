@@ -13,6 +13,8 @@ Mongoose.connect(config.databaseUrl, { useNewUrlParser: true })
 
 const app = Express()
 
+const compiler = Webpack(WebpackConfig)
+
 app.use(
     WebpackDevMiddleware(compiler, {
         hot: true,
