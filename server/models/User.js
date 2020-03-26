@@ -1,6 +1,8 @@
 import mongoose from 'mongoose'
 import Bcrypt from 'bcryptjs'
 import randomstring from 'randomstring'
+import Mail from '@fullstackjs/mail'
+import config from '@config'
 
 const UserSchema = new mongoose.Schema({
     name: String,
@@ -17,6 +19,17 @@ UserSchema.pre('save', function () {
     this.emailConfirmCode = randomstring.generate(72)
 
     this.createdAt = new Date()
+})
+
+UserSchema.post('save', async function () {
+    await new Mail('confirm-account')
+        .to(this.email, this.name)
+        .subject('Please confirm your account')
+        .data({
+            name: this.name,
+            url: `${config.url}/auth/emails/confirm/${this.emailConfirmCode}`
+        })
+        .send()
 })
 
 export default mongoose.model('User', UserSchema)
