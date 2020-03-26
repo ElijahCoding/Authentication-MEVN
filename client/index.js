@@ -6,10 +6,14 @@ import Router from 'vue-router'
 import TextInput from '@/client/components/TextInput.vue'
 import Validator from 'vee-validate'
 import store from './store'
+import Button from '@components/Button.vue'
+import Loader from '@components/Loader.vue'
 
 Vue.use(Router)
 Vue.use(Validator)
 
+Vue.component('btn', Button)
+Vue.component('loader', Loader)
 Vue.component('text-input', TextInput)
 
 const app = new Vue({
