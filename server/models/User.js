@@ -1,3 +1,4 @@
+import jwt from 'jsonwebtoken'
 import mongoose from 'mongoose'
 import Bcrypt from 'bcryptjs'
 import randomstring from 'randomstring'
@@ -31,5 +32,9 @@ UserSchema.post('save', async function () {
         })
         .send()
 })
+
+UserSchema.methods.generateToken = function () {
+    return jwt.sign({ id: this._id }, config.jwtSecret)
+}
 
 export default mongoose.model('User', UserSchema)
