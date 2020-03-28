@@ -1,15 +1,15 @@
 <template>
     <div class="mb-3">
         <input
-                :type="type"
-                :name="name"
-                :value="value"
-                @focus="$emit('focus')"
-                @blur="$emit('blue')"
-                :placeholder="placeholder"
-                @change="$emit('input', $event.target.value)"
-                @input="$emit('input', $event.target.value)"
-                class="w-full text-xs focus:outline-none bg-brown-lightest p-5 text-brown"
+            :type="type"
+            :name="name"
+            :value="value"
+            @focus="$emit('focus')"
+            @blur="$emit('blue')"
+            :placeholder="placeholder"
+            @change="$emit('input', $event.target.value)"
+            @input="$emit('input', $event.target.value)"
+            class="w-full text-xs focus:outline-none bg-brown-lightest p-5 text-brown"
         >
 
         <span v-if="error" class="text-xs text-red">{{ error }}</span>
